@@ -1,5 +1,42 @@
 version: '3'
 services:
+  eureka-server:
+    build:
+      context: ./service-discovery
+      dockerfile: Dockerfile
+    environment:
+      SPRING_APPLICATION_JSON: '{"eureka":{"client":{"serviceUrl":{"defaultZone":"http://eureka-server:8761/eureka"}}}}'
+    ports:
+      - "8761:8761"
+    networks:
+      - emp-network   
+      
+  grocery-sale-service:
+    build:
+      context: ./grocery
+      dockerfile: Dockerfile
+    environment:
+      SPRING_APPLICATION_JSON: '{"eureka":{"client":{"serviceUrl":{"defaultZone":"http://eureka-server:8761/eureka"}}}}'
+    ports:
+      - "8080:8080"
+    depends_on:
+      - eureka-server
+    networks:
+      - emp-network
+      
+  price-trending-service:
+    build:
+      context: ./price-trending
+      dockerfile: Dockerfile
+    environment:
+      SPRING_APPLICATION_JSON: '{"eureka":{"client":{"serviceUrl":{"defaultZone":"http://eureka-server:8761/eureka"}}}}'
+    ports:
+      - "8082:8082"
+    depends_on:
+      - eureka-server
+    networks:
+      - emp-network
+      
   frontend:
     build:
       context: ./grocery-sale-ui
@@ -7,10 +44,10 @@ services:
     ports:
       - "3000:3000"
     depends_on:
-      - backend
-  backend:
-    build:
-      context: ./grocery
-      dockerfile: Dockerfile
-    ports:
-      - "8080:8080"
+      - grocery-sale-service
+    networks:
+      - emp-network
+      
+networks:
+    emp-network:
+        driver: bridge

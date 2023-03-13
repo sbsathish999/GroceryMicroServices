@@ -38,11 +38,12 @@ public class PriceTrendingServiceImpl implements PriceTrendingService{
 
     protected Map<String, List<Float>> convertToPriceDateMap(List<PriceData> priceByItems) {
         Map<String, List<Float>> priceByDateMap = new TreeMap<>();
-        SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy");
+        SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+        SimpleDateFormat yearFormat = new SimpleDateFormat("yyyy");
         priceByItems.stream().forEach(pd -> {
             String year = null;
             try {
-                year = dateFormat.format(dateFormat.parse(pd.getDate()));
+                year = yearFormat.format(dateFormat.parse(pd.getDate()));
             } catch (ParseException e) {
                 throw new RuntimeException(e);
             }

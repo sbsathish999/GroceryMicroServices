@@ -9,7 +9,7 @@ services:
     ports:
       - "8761:8761"
     networks:
-      - emp-network   
+      - micro-network   
       
   grocery-sale-service:
     build:
@@ -22,7 +22,7 @@ services:
     depends_on:
       - eureka-server
     networks:
-      - emp-network
+      - micro-network
       
   price-trending-service:
     build:
@@ -35,7 +35,7 @@ services:
     depends_on:
       - eureka-server
     networks:
-      - emp-network
+      - micro-network
       
   frontend:
     build:
@@ -46,8 +46,8 @@ services:
     depends_on:
       - grocery-sale-service
     networks:
-      - emp-network
+      - micro-network
       
 networks:
-    emp-network:
+    micro-network:
         driver: bridge

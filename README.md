@@ -9,7 +9,7 @@ Steps for Application Cloning:
 1. Clone this repository to your local system: https://github.com/sbsathish999/GroceryMicroServices.git
 2. After step-1, Go to the root folder of the GroceryMicroServices folder.
 3. Git clone this 1st sub module repository(backend micro service) to the root folder of GroceryMicroServices: https://github.com/sbsathish999/grocery.git
-4. Git clone this 2nd sub module reporistory(frontend micro service) to the root folder of GroceryMicroServices: https://github.com/sbsathish999/grocery-sale-ui.git
+4. Git clone this 2nd sub module repository(frontend micro service) to the root folder of GroceryMicroServices: https://github.com/sbsathish999/grocery-sale-ui.git
 
 Steps for Applicaiton Running:
 1. Open the command prompt/terminal and go to the root folder of GroceryMicroServices
